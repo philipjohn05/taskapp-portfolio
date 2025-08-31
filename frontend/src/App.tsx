@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         const data = await response.json();
         setStatus(`API Connected: ${data.status}`);
       } catch (error) {
-        setStatus(`API Error: ${error.message}`);
+        setStatus(`API Error: ${(error as Error).message}`);
       }
     };
     

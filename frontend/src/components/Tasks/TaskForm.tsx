@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CreateTaskDto } from '../../types/Task';
+import type { CreateTaskDto } from '../../types/Task';
 
 interface TaskFormProps {
   onCreateTask: (task: CreateTaskDto) => Promise<void>;

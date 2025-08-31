@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Task, CreateTaskDto, UpdateTaskDto, ApiResponse } from '../types/Task';
+import type { Task, CreateTaskDto, UpdateTaskDto, ApiResponse } from '../types/Task';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:7071/api';
 
