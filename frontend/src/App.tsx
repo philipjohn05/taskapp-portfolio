@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   const [status, setStatus] = useState('Loading...');
   // Use the deployed Azure Functions URL instead of localhost
-  const [apiUrl] = useState('https://func-taskapp-72728.azurewebsites.net/api');
+  const [apiUrl] = useState('https://func-taskapp-35783.azurewebsites.net/api');
 
   useEffect(() => {
     const testAPI = async () => {
