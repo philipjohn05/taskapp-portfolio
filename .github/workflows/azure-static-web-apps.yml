@@ -36,6 +36,12 @@ jobs:
           ls -al
           echo "First 10 lines of index.html:"
           head -n 10 index.html
+          
+      - name: Verify dist contents
+        run: |
+          cd frontend/dist
+          echo "Listing dist folder:"
+          ls -R
 
       - name: Build And Deploy
         id: builddeploy
