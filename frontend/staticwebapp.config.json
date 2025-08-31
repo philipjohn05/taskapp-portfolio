@@ -1,16 +1,35 @@
 {
   "routes": [
     {
-      "route": "/api/*",
-      "allowedRoles": ["anonymous"]
+      "route": "/assets/*",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
     },
     {
-      "route": "/*",
-      "rewrite": "/index.html"
+      "route": "*.js",
+      "headers": {
+        "content-type": "application/javascript"
+      }
+    },
+    {
+      "route": "*.css",
+      "headers": {
+        "content-type": "text/css"
+      }
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": ["anonymous"]
     }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/images/*.{png,jpg,gif,svg}", "/css/*", "/js/*"]
+    "exclude": ["/assets/*", "*.js", "*.css", "*.json", "*.ico", "*.png", "*.jpg", "*.gif", "*.svg"]
+  },
+  "mimeTypes": {
+    ".js": "application/javascript",
+    ".css": "text/css",
+    ".json": "application/json"
   }
 }
