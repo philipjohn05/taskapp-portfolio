@@ -64,7 +64,7 @@ A professional, cloud-native task management application demonstrating enterpris
 - Clean, maintainable code structure
 
 ## Project Structure
-
+'''bash
 taskapp-portfolio/
 ├── frontend/                    # React TypeScript application
 │   ├── src/
@@ -82,7 +82,7 @@ taskapp-portfolio/
 ├── database/                   # SQL scripts and migrations
 ├── .github/workflows/         # CI/CD pipeline definitions
 └── docs/                      # Documentation and screenshots
-
+'''
 
 ## Local Development
 
