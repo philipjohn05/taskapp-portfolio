@@ -13,12 +13,18 @@ var host = new HostBuilder()
     {
         // Get connection string from environment
         string connectionString = Environment.GetEnvironmentVariable("SqlConnectionString") 
-            ?? "Server=sql-taskapp-72728.database.windows.net;Database=TaskAppDB;Trusted_Connection=true;MultipleActiveResultSets=true";
+            ?? "Data Source=sql-taskapp-72728.database.windows.net;Initial Catalog=TaskAppDB;User ID=taskadmin;Password=TaskApp123!@#;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True;";
 
-        // Register DbContext
+        // Register DbContext with retry on failure
         services.AddDbContext<TaskDbContext>(options =>
-            options.UseSqlServer(connectionString));
-            
+            options.UseSqlServer(connectionString, sqlOptions =>
+            {
+                sqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 3,
+                    maxRetryDelay: TimeSpan.FromSeconds(5),
+                    errorNumbersToAdd: null);
+                sqlOptions.CommandTimeout(30);
+            }));
 
         // Register services
         services.AddScoped<ITaskService, TaskService>();
