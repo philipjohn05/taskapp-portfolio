@@ -72,7 +72,17 @@ Total monthly cost: ~$5-7 AUD
 - TypeScript for type safety
 - Professional code organization
 
-## 📁 Project Structure## 🔧 Local Development
+## 📁 Project Structure
+
+taskapp-portfolio/
+├── backend/TaskApp.Functions/     # Azure Functions API
+├── frontend/                      # React TypeScript app
+├── database/                      # SQL scripts and migrations
+├── infrastructure/                # Azure resource configurations
+└── docs/                         # Documentation and screenshots
+
+
+## 🔧 Local Development
 
 1. **Backend:** `cd backend/TaskApp.Functions && func start`
 2. **Frontend:** `cd frontend && npm run dev`
