@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import type { Task, CreateTaskDto, ApiResponse } from './types/Task';
+import type { Task, CreateTaskDto } from './types/Task';
 import { taskService } from './services/taskService';
 import TaskForm from './components/Tasks/TaskForm';
 import TaskList from './components/Tasks/TaskList';
