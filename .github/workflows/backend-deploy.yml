@@ -34,22 +34,22 @@ jobs:
         cd backend/TaskApp.Functions
         dotnet publish --configuration Release --no-build --output ./output
 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
     - name: Deploy to Azure Functions
       uses: Azure/functions-action@v1
       with:
-        app-name: 'func-taskapp-35783'
+        app-name: 'func-taskapp-72728'
         slot-name: 'production'
         package: './backend/TaskApp.Functions/output'
         publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
 
     - name: Configure App Settings
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.30.0
-        inlineScript: |
-          az functionapp config appsettings set \
-            --name func-taskapp-35783 \
-            --resource-group rg-taskapp-portfolio \
-            --settings "SqlConnectionString=${{ secrets.SQL_CONNECTION_STRING }}"
-      env:
-        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      run: |
+        az functionapp config appsettings set \
+          --name func-taskapp-72728 \
+          --resource-group rg-taskapp-portfolio \
+          --settings "SqlConnectionString=${{ secrets.SQL_CONNECTION_STRING }}"
