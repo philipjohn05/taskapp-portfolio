@@ -11,6 +11,23 @@ const api = axios.create({
   },
 });
 
+// Helper function to map backend task data to frontend format
+const mapBackendTask = (backendTask: any): Task => ({
+  id: backendTask.Id,
+  title: backendTask.Title,
+  description: backendTask.Description,
+  isCompleted: backendTask.IsCompleted,
+  priority: backendTask.Priority,
+  dueDate: backendTask.DueDate,
+  createdAt: backendTask.CreatedAt,
+  completedAt: backendTask.CompletedAt,
+  userId: backendTask.UserId,
+  tags: backendTask.Tags,
+  categoryId: backendTask.CategoryId,
+  categoryName: backendTask.CategoryName,
+  categoryColor: backendTask.CategoryColor,
+});
+
 // Add response interceptor for better error handling
 api.interceptors.response.use(
   (response) => {
@@ -57,9 +74,15 @@ export const taskService = {
   async getTasks(): Promise<Task[]> {
     try {
       console.log('Fetching tasks from:', API_BASE_URL + '/tasks');
-      const response = await api.get<ApiResponse<Task[]>>('/tasks');
+      const response = await api.get<ApiResponse<any[]>>('/tasks');
       console.log('Get tasks response:', response.data);
-      return response.data.Data || [];
+      
+      if (!response.data.Data) {
+        return [];
+      }
+      
+      // Map backend data to frontend format
+      return response.data.Data.map(mapBackendTask);
     } catch (error) {
       console.error('getTasks error:', error);
       throw error;
@@ -71,7 +94,7 @@ export const taskService = {
       console.log('Creating task:', task);
       console.log('POST to:', API_BASE_URL + '/tasks');
       
-      const response = await api.post<ApiResponse<Task>>('/tasks', task);
+      const response = await api.post<ApiResponse<any>>('/tasks', task);
       console.log('Create task full response:', {
         status: response.status,
         statusText: response.statusText,
@@ -86,7 +109,7 @@ export const taskService = {
         throw new Error('No task data returned from server');
       }
       
-      return response.data.Data;
+      return mapBackendTask(response.data.Data);
     } catch (error) {
       console.error('createTask error:', error);
       throw error;
@@ -94,17 +117,35 @@ export const taskService = {
   },
 
   async updateTask(id: number, task: UpdateTaskDto): Promise<Task> {
-    const response = await api.put<ApiResponse<Task>>(`/tasks/${id}`, task);
-    if (!response.data.Success) {
-      throw new Error(response.data.Error || 'Failed to update task');
+    try {
+      console.log('Updating task:', id, task);
+      console.log('PUT to:', `${API_BASE_URL}/tasks/${id}`);
+      
+      const response = await api.put<ApiResponse<any>>(`/tasks/${id}`, task);
+      console.log('Update task response:', response.data);
+      
+      if (!response.data.Success) {
+        throw new Error(response.data.Error || 'Failed to update task');
+      }
+      
+      return mapBackendTask(response.data.Data);
+    } catch (error) {
+      console.error('updateTask error:', error);
+      throw error;
     }
-    return response.data.Data!;
   },
 
   async deleteTask(id: number): Promise<void> {
-    const response = await api.delete<ApiResponse<boolean>>(`/tasks/${id}`);
-    if (!response.data.Success) {
-      throw new Error(response.data.Error || 'Failed to delete task');
+    try {
+      console.log('Deleting task:', id);
+      const response = await api.delete<ApiResponse<boolean>>(`/tasks/${id}`);
+      
+      if (!response.data.Success) {
+        throw new Error(response.data.Error || 'Failed to delete task');
+      }
+    } catch (error) {
+      console.error('deleteTask error:', error);
+      throw error;
     }
   },
 
