@@ -1,179 +1,143 @@
-# TaskApp Portfolio - Full-Stack Azure Task Management System
+# Cloud-Native Task Management System - DevOps Portfolio
 
-A professional, cloud-native task management application demonstrating enterprise-level development practices with Azure services, modern web technologies, and automated CI/CD pipelines.
+A production-ready, cloud-native application demonstrating **infrastructure automation, DevOps practices, and platform engineering** capabilities using Azure services.
+
+## 🏗️ Infrastructure & DevOps Focus
+
+This project showcases enterprise-level DevOps and cloud infrastructure skills through:
+
+### Infrastructure as Code & Cloud Architecture
+- **Azure Resource Management**: Automated provisioning of multi-tier cloud infrastructure
+- **Serverless Architecture**: Azure Functions for cost-effective, auto-scaling compute
+- **Managed Database**: Azure SQL Database with automated backups and scaling
+- **Global Content Delivery**: Azure Static Web Apps with CDN distribution
+- **Resource Optimization**: Cost-effective architecture (~$7/month total cost)
+
+### DevOps & CI/CD Pipeline
+- **Automated Deployment**: GitHub Actions for both frontend and backend
+- **Environment Management**: Separate development/production configurations  
+- **Security Best Practices**: Credentials managed via GitHub Secrets and Azure Key Vault
+- **Code Quality**: TypeScript compilation, testing, and build validation
+- **Infrastructure Monitoring**: Application Insights integration
+
+### Platform Engineering
+- **Multi-Region Deployment**: Australia Southeast (backend) + East Asia (frontend)
+- **Cross-Origin Security**: Properly configured CORS policies
+- **Error Handling & Resilience**: Database retry logic and connection pooling
+- **Scalability Design**: Serverless functions that scale automatically with demand
 
 ## Live Demo
 - **Application**: https://ambitious-ground-00a372300.2.azurestaticapps.net
-- **API Health**: https://func-taskapp-35783.azurewebsites.net/api/health
-- **Repository**: https://github.com/philipjohn05/taskapp-portfolio
+- **API Health Check**: https://func-taskapp-35783.azurewebsites.net/api/health
 
-## Architecture Overview
-
-### Technology Stack
-- **Frontend**: React 19 + TypeScript + Vite
-- **Backend**: .NET 8 + Azure Functions v4
-- **Database**: Azure SQL Database
-- **Hosting**: Azure Static Web Apps + Azure Functions
-- **CI/CD**: GitHub Actions
-- **Authentication**: Azure Active Directory (planned)
-
-### Azure Services Used
-- **Azure Functions**: Serverless compute for REST API
-- **Azure SQL Database**: Managed relational database
-- **Azure Static Web Apps**: Frontend hosting with global CDN
-- **Application Insights**: Monitoring and telemetry
-- **GitHub Actions**: Automated build and deployment
-
-## Features
-
-### Task Management
-- Create, read, update, delete tasks
-- Task completion tracking with timestamps
-- Priority levels (High, Medium, Low)
-- Due date management
-- Tag-based organization
-- Real-time task statistics
-
-### Technical Features
-- RESTful API design
-- TypeScript for type safety
-- Responsive design for all devices
-- Professional error handling
-- Real-time data synchronization
-- Production-ready security practices
-
-## Development Practices
-
-### Security
-- Credentials managed via GitHub Secrets
-- Environment-specific configurations
-- CORS properly configured
-- Input validation and sanitization
-
-### DevOps
-- Automated frontend deployment to Azure Static Web Apps
-- Automated backend deployment to Azure Functions
-- Separate CI/CD pipelines for frontend and backend changes
-- Production-ready build optimizations
-
-### Code Quality
-- TypeScript for compile-time type checking
-- Component-based architecture
-- Service layer separation
-- Proper error handling and user feedback
-- Clean, maintainable code structure
-
-## Project Structure
+## Architecture Diagram
 ```bash
-taskapp-portfolio/
-├── frontend/                  # React TypeScript application
-│   ├── src/
-│   │   ├── components/        # Reusable UI components
-│   │   ├── services/          # API integration layer
-│   │   ├── types/             # TypeScript type definitions
-│   │   └── utils/             # Utility functions
-│   └── dist/                  # Production build output
-├── backend/                   # .NET Azure Functions API
-│   └── TaskApp.Functions/
-│       ├── Functions/         # HTTP trigger functions
-│       ├── Models/            # Data models and DTOs
-│       ├── Data/              # Entity Framework context
-│       └── Services/          # Business logic layer
-├── database/                  # SQL scripts and migrations
-├── .github/workflows/         # CI/CD pipeline definitions
-└── docs/                      # Documentation and screenshots
+┌─────────────────────────────────────────────────────┐
+│                    GitHub Actions CI/CD             │
+├─────────────────────────────────────────────────────┤
+│  Frontend Pipeline          │  Backend Pipeline     │
+│  ├─ Build React/TypeScript  │  ├─ Build .NET Core   │
+│  ├─ Run Tests               │  ├─ Run Tests         │
+│  └─ Deploy to Static Apps   │  └─ Deploy Functions  │
+└─────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│                 Azure Cloud Platform                 │
+├──────────────────────────────────────────────────────┤
+│  ┌─────────────────────┐    ┌───────────────────────┐│
+│  │  Static Web Apps    │    │   Azure Functions     ││
+│  │  (East Asia)        │    │   (Australia SE)      ││
+│  │  - Global CDN       │◄──►│   - Serverless Compute││
+│  │  - Auto HTTPS       │    │   - Auto-scaling      ││
+│  └─────────────────────┘    └───────────────────────┘│
+│             │                          │             │
+│             └────────────┬─────────────┘             │
+│                          ▼                           │
+│  ┌─────────────────────────────────────────────────┐ │
+│  │         Azure SQL Database                      │ │
+│  │         (Australia Southeast)                   │ │
+│  │  - Managed backups    - Query optimization      │ │
+│  │  - Automatic scaling  - Security patching       │ │
+│  └─────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────┘
 ```
 
-## Local Development
+## Infrastructure Specifications
 
-### Prerequisites
-- .NET 8 SDK
-- Node.js 18+
-- Azure Functions Core Tools
-- Azure CLI
+### Compute Resources
+- **Azure Functions**: Consumption plan, auto-scaling serverless compute
+- **Runtime**: .NET 8 on Azure Functions v4
+- **Concurrency**: Handles up to 200 concurrent requests per instance
 
-### Backend Setup
-```bash
-cd backend/TaskApp.Functions
-cp local.settings.json.template local.settings.json
-# Update connection string in local.settings.json
-func start
+### Database & Storage
+- **Azure SQL Database**: Basic tier, 2GB storage with automatic backups
+- **Connection Pooling**: Entity Framework with retry logic for transient failures
+- **Data Security**: Encrypted connections, parameterized queries, RBAC
 
-Frontend Setup
+### Networking & Security
+- **HTTPS Everywhere**: TLS 1.3 encryption for all communications
+- **CORS Configuration**: Properly configured cross-origin access
+- **Firewall Rules**: Database accessible only from Azure Functions
+- **Secrets Management**: No credentials in source code, Azure App Settings integration
 
-cd frontend
-npm install
-npm run dev
+### Monitoring & Observability  
+- **Application Insights**: Performance monitoring, dependency tracking
+- **Health Checks**: Automated endpoint monitoring
+- **Error Tracking**: Centralized logging and alerting
+- **Cost Monitoring**: Budget alerts and resource optimization
 
+## Skills Demonstrated
 
-Database Setup
+### Cloud Architecture & Design
+- Multi-tier application design
+- Serverless architecture patterns  
+- Cost optimization strategies
+- Cross-region deployment considerations
 
-Azure SQL Database is used for both development and production
-Connection string configured via environment variables
-Entity Framework migrations for schema management
+### Infrastructure Automation
+- Azure CLI scripting for resource provisioning
+- GitHub Actions workflow automation
+- Environment configuration management
+- Automated deployment pipelines
 
-Deployment
-Automated Deployment
+### DevOps Engineering
+- CI/CD pipeline design and implementation
+- Code quality gates and testing integration
+- Infrastructure as Code principles
+- Security-first deployment practices
 
-Frontend: Automatically deployed via GitHub Actions to Azure Static Web Apps
-Backend: Automatically deployed via GitHub Actions to Azure Functions
-Triggered by pushes to main branch
+### Platform Operations
+- Monitoring and alerting setup
+- Performance optimization
+- Disaster recovery considerations
+- Scalability planning and implementation
 
-Manual Deployment
+## Technical Stack
 
-# Backend
-cd backend/TaskApp.Functions
-func azure functionapp publish func-taskapp-72728
+| Layer | Technology | Purpose |
+|-------|------------|---------|
+| Frontend | React + TypeScript + Vite | Modern web application |
+| API | .NET 8 + Azure Functions | Serverless business logic |
+| Database | Azure SQL Database | Managed relational data |
+| Hosting | Azure Static Web Apps | Global content delivery |
+| CI/CD | GitHub Actions | Automated deployment |
+| Monitoring | Application Insights | Performance tracking |
+| Security | Azure Key Vault + Secrets | Credential management |
 
-# Frontend
-cd frontend
-npm run build
-# Upload dist/ folder to Azure Static Web Apps
+## Cost Analysis
+**Monthly Operating Cost: ~$7 AUD**
+- Azure SQL Database (Basic): $5/month
+- Azure Functions (Consumption): $1-2/month  
+- Static Web Apps: Free tier
+- Application Insights: Free tier (5GB/month)
 
-Cost Analysis
-Monthly Cost: ~$5-7 AUD
+*Cost-effective architecture suitable for small to medium workloads*
 
-Azure SQL Database (Basic): $5/month
-Azure Functions (Consumption): $1-2/month
-Azure Static Web Apps: Free
-Application Insights: Free (5GB/month)
+## Contact
+**PJ Faraon** - DevOps Engineer & Platform Specialist  
+📧 pjcloudapps@gmail.com  
+🔗 LinkedIn: https://www.linkedin.com/in/pjfaraon/
+💻 GitHub: https://github.com/philipjohn05/taskapp-portfolio
 
-Performance & Scalability
+---
 
-Frontend: Global CDN distribution via Azure Static Web Apps
-Backend: Serverless auto-scaling with Azure Functions
-Database: Managed Azure SQL with automatic backups
-Monitoring: Real-time performance tracking with Application Insights
-
-Skills Demonstrated
-Cloud Architecture
-
-Serverless computing patterns
-Microservices architecture
-Cloud-native application design
-Multi-region deployment strategies
-
-Full-Stack Development
-
-Modern React development with hooks and TypeScript
-RESTful API design and implementation
-Database schema design and optimization
-Responsive web design principles
-
-DevOps & Automation
-
-Infrastructure as Code principles
-Automated CI/CD pipelines
-Environment-specific deployments
-Secure credential management
-
-Software Engineering
-
-Clean architecture patterns
-Dependency injection
-Error handling and resilience
-Code organization and maintainability
-
-Contact
-Built by Philip John - pjfaraon@gmail.com - https://www.linkedin.com/in/pjfaraon/
-This project demonstrates practical experience with modern cloud development, full-stack engineering, and enterprise-level software practices.
+*This project demonstrates practical experience with cloud architecture, DevOps automation, and platform engineering - skills directly applicable to infrastructure and platform engineering roles.*
