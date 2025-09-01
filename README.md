@@ -66,20 +66,20 @@ A professional, cloud-native task management application demonstrating enterpris
 ## Project Structure
 ```bash
 taskapp-portfolio/
-├── frontend/                    # React TypeScript application
+├── frontend/                  # React TypeScript application
 │   ├── src/
-│   │   ├── components/         # Reusable UI components
-│   │   ├── services/           # API integration layer
+│   │   ├── components/        # Reusable UI components
+│   │   ├── services/          # API integration layer
 │   │   ├── types/             # TypeScript type definitions
 │   │   └── utils/             # Utility functions
 │   └── dist/                  # Production build output
-├── backend/                    # .NET Azure Functions API
+├── backend/                   # .NET Azure Functions API
 │   └── TaskApp.Functions/
 │       ├── Functions/         # HTTP trigger functions
 │       ├── Models/            # Data models and DTOs
 │       ├── Data/              # Entity Framework context
 │       └── Services/          # Business logic layer
-├── database/                   # SQL scripts and migrations
+├── database/                  # SQL scripts and migrations
 ├── .github/workflows/         # CI/CD pipeline definitions
 └── docs/                      # Documentation and screenshots
 ```
