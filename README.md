@@ -96,7 +96,7 @@ taskapp-portfolio/
 
 ## 👨‍💻 Developer
 
-Built by [Your Name] as a portfolio demonstration of full-stack Azure development capabilities.
+Built by Philip John as a portfolio demonstration of full-stack Azure development capabilities.
 
 **Skills Demonstrated:**
 - Cloud-native architecture design
