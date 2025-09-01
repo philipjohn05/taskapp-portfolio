@@ -33,9 +33,10 @@ export interface UpdateTaskDto {
   categoryId?: number;
 }
 
+// Backend returns capitalized properties
 export interface ApiResponse<T> {
-  success: boolean;
-  message: string;
-  data?: T;
-  error?: string;
+  Success: boolean;
+  Message: string;
+  Data?: T;
+  Error?: string;
 }

@@ -24,7 +24,6 @@ api.interceptors.response.use(
       status: error.response?.status,
       statusText: error.response?.statusText,
       responseData: error.response?.data,
-      responseHeaders: error.response?.headers,
       config: {
         url: error.config?.url,
         method: error.config?.method,
@@ -60,7 +59,7 @@ export const taskService = {
       console.log('Fetching tasks from:', API_BASE_URL + '/tasks');
       const response = await api.get<ApiResponse<Task[]>>('/tasks');
       console.log('Get tasks response:', response.data);
-      return response.data.data || [];
+      return response.data.Data || [];
     } catch (error) {
       console.error('getTasks error:', error);
       throw error;
@@ -76,21 +75,18 @@ export const taskService = {
       console.log('Create task full response:', {
         status: response.status,
         statusText: response.statusText,
-        data: response.data,
-        headers: response.headers
+        data: response.data
       });
       
-      if (!response.data.success && !response.data.Success) {
-        throw new Error(response.data.error || response.data.Error || response.data.message || response.data.Message || 'Failed to create task');
+      if (!response.data.Success) {
+        throw new Error(response.data.Error || response.data.Message || 'Failed to create task');
       }
       
-      // Handle both success and Success properties (case sensitivity)
-      const taskData = response.data.data || response.data.Data;
-      if (!taskData) {
+      if (!response.data.Data) {
         throw new Error('No task data returned from server');
       }
       
-      return taskData;
+      return response.data.Data;
     } catch (error) {
       console.error('createTask error:', error);
       throw error;
@@ -99,16 +95,16 @@ export const taskService = {
 
   async updateTask(id: number, task: UpdateTaskDto): Promise<Task> {
     const response = await api.put<ApiResponse<Task>>(`/tasks/${id}`, task);
-    if (!response.data.success) {
-      throw new Error(response.data.error || 'Failed to update task');
+    if (!response.data.Success) {
+      throw new Error(response.data.Error || 'Failed to update task');
     }
-    return response.data.data!;
+    return response.data.Data!;
   },
 
   async deleteTask(id: number): Promise<void> {
     const response = await api.delete<ApiResponse<boolean>>(`/tasks/${id}`);
-    if (!response.data.success) {
-      throw new Error(response.data.error || 'Failed to delete task');
+    if (!response.data.Success) {
+      throw new Error(response.data.Error || 'Failed to delete task');
     }
   },
 
