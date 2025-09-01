@@ -79,7 +79,7 @@ taskapp-portfolio/
 ├── frontend/                      # React TypeScript app
 ├── database/                      # SQL scripts and migrations
 ├── infrastructure/                # Azure resource configurations
-└── docs/                         # Documentation and screenshots
+└── docs/                          # Documentation and screenshots
 
 
 ## 🔧 Local Development
