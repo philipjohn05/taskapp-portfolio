@@ -51,8 +51,8 @@ A modern, cloud-native task management application built with Azure services, de
 ## 📊 Live Demo
 
 - **Frontend:** https://ambitious-ground-00a372300.2.azurestaticapps.net/
-- **API Endpoints:** https://func-taskapp-72728.azurewebsites.net/api
-- **Health Check:** https://func-taskapp-72728.azurewebsites.net/api/health
+- **API Endpoints:** https://func-taskapp-35783.azurewebsites.net/api
+- **Health Check:** https://func-taskapp-35783.azurewebsites.net/api/health
 
 ## 💰 Cost Optimization
 
