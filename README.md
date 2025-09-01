@@ -135,7 +135,7 @@ This project showcases enterprise-level DevOps and cloud infrastructure skills t
 ## Contact
 **PJ Faraon** - DevOps Engineer & Platform Specialist  
 📧 pjcloudapps@gmail.com  
-🔗 LinkedIn: https://www.linkedin.com/in/pjfaraon/
+🔗 LinkedIn: https://www.linkedin.com/in/pjfaraon/ 
 💻 GitHub: https://github.com/philipjohn05/taskapp-portfolio
 
 ---
